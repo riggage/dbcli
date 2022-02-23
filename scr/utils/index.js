@@ -1,3 +1,11 @@
+const filter={title:"SpiderMan"}
+const updateDoc={
+    $set:{
+        title:"Spider-Man: Homecoming"
+    }
+}
+const query={title:"Superman"}
+
 class Movie {
     constructor (title, actor = "Not specified") {
         this.title = title
@@ -15,12 +23,14 @@ class Movie {
     }
 
     async update (collection) {
-        return await collection.updateOne()
+        await collection.updateOne(filter, updateDoc)
+        return "Entry Updated"
         // update a movie in the db
     }
 
     async delete (collection) {
-        return await collection.deleteOne()
+        await collection.deleteOne(query)
+        return "Entry deleted"
         // deleate a moive in the db
     }
 }
